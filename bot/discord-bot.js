@@ -170,7 +170,7 @@ function buildPanelPayload() {
       .setStyle(ButtonStyle.Danger),
     new ButtonBuilder()
       .setCustomId("btn_panel_roster")
-      .setLabel("📋 ดูทำเนียบแก๊ง")
+      .setLabel("📋 ดูสมาชิก")
       .setStyle(ButtonStyle.Secondary)
   );
 
@@ -421,7 +421,7 @@ client.on("interactionCreate", async (interaction) => {
       await interaction.showModal(modal);
     }
 
-    // C. ปุ่ม: 📋 ดูทำเนียบแก๊ง
+    // C. ปุ่ม: 📋 ดูสมาชิก
     else if (customId === "btn_panel_roster") {
       await interaction.deferReply({ ephemeral: true });
 
