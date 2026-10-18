@@ -102,11 +102,6 @@
   transform: translateY(-1px);
 }
 
-.login-hint {
-  margin-top: 18px;
-  font-size: 11px;
-  color: #666;
-}
 
 /* Admin Dashboard Layout */
 .admin-dashboard {

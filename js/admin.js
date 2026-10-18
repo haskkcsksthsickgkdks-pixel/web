@@ -38,7 +38,7 @@
       form.addEventListener("submit", (e) => {
         e.preventDefault();
         const entered = pinInput.value.trim();
-        if (entered === DEFAULT_PIN || entered === "westwood168" || entered === "1234" || entered === "168") {
+        if (entered === DEFAULT_PIN) {
           sessionStorage.setItem("westwood_admin_session_v1", "true");
           document.getElementById("adminAuthOverlay").style.display = "none";
           renderMembersTable();
