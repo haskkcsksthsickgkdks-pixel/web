@@ -175,7 +175,7 @@ function buildPanelPayload() {
   );
 
   // Action Row 2: Refresh, Web Link
-  const webUrl = API_URL.replace("localhost", "127.0.0.1") + "/members.html";
+  const webUrl = API_URL.replace("https://westwood.up.railway.app/members.html")
   const row2 = new ActionRowBuilder().addComponents(
     new ButtonBuilder()
       .setCustomId("btn_panel_refresh")
