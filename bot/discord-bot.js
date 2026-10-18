@@ -30,7 +30,8 @@ const client = new Client({
 });
 
 // Config
-const API_URL = process.env.API_URL || "http://localhost:3000";
+const PORT = process.env.PORT || 3000;
+const API_URL = process.env.API_URL || `http://localhost:${PORT}`;
 const MEMBERS_FILE = path.join(__dirname, "..", "data", "members.json");
 
 // Role Colors Mapping for Discord Embeds
@@ -57,7 +58,7 @@ async function callApi(endpoint, data) {
 
       const options = {
         hostname: url.hostname,
-        port: url.port || 3000,
+        port: url.port || PORT,
         path: url.pathname + url.search,
         method: "POST",
         headers: {

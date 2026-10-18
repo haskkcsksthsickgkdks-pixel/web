@@ -243,9 +243,12 @@ app.listen(PORT, () => {
   // Auto-start Discord Bot alongside Web Server if token is present
   if (process.env.DISCORD_TOKEN && process.env.DISCORD_TOKEN !== "your_discord_bot_token_here") {
     try {
+      console.log(`🤖 Starting Discord Bot with DISCORD_TOKEN...`);
       require("./bot/discord-bot.js");
     } catch (err) {
-      console.warn("Could not auto-start Discord Bot:", err.message);
+      console.warn("⚠️ Could not auto-start Discord Bot:", err.message);
     }
+  } else {
+    console.log(`ℹ️ [Notice] Web Server is ONLINE! To enable the Discord Bot, add DISCORD_TOKEN, CLIENT_ID, and GUILD_ID in your hosting Environment Variables.\n`);
   }
 });
