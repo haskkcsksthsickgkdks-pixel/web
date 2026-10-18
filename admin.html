@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="th" data-theme="crimson">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="WESTWOOD — Admin Command Center">
+  <title>WESTWOOD — Admin Command Center</title>
+  
+  <link rel="icon" type="image/jpeg" href="assets/logo-red.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;900&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/admin.css">
+  <link rel="stylesheet" href="css/player.css">
+  <link rel="stylesheet" href="css/discord-bridge.css">
+</head>
+<body class="admin-page">
+  <!-- Topbar Header -->
+  <header class="topbar shell">
+    <a class="brand" href="index.html">
+      <span class="brand-box">
+        <img src="assets/logo-red.jpg" alt="Westwood Logo">
+      </span>
+      <span class="brand-word">WESTWOOD</span>
+    </a>
+
+    <div class="topbar-actions">
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="members.html">Members</a>
+        <a class="active" href="admin.html">Admin</a>
+      </nav>
+      <button class="theme-switch-btn" type="button" title="สลับธีม Crimson / Gold">
+        <span class="theme-indicator-dot"></span>
+        <span class="theme-label-text">CRIMSON METAL</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Page Content Container for Seamless SPA Navigation -->
+  <div id="pageContent">
+    <!-- PIN Security Authentication Gate -->
+    <div class="admin-login-overlay" id="adminAuthOverlay">
+      <div class="admin-login-box">
+        <div class="login-crest">
+          <img src="assets/logo-red.jpg" alt="Westwood">
+        </div>
+        <h1>WESTWOOD ADMIN</h1>
+        <p>กรุณาระบุรหัส PIN เพื่อเข้าสู่ระบบจัดการ</p>
+
+        <form id="adminLoginForm">
+          <div class="pin-input-wrap">
+            <input type="password" id="adminPinInput" class="pin-input" maxlength="10" placeholder="••••" autocomplete="off" autofocus required>
+          </div>
+          <button type="submit" class="login-submit-btn">เข้าสู่ระบบ</button>
+        </form>
+        <div id="adminLoginError" style="color: #ff5252; font-size: 12px; margin-top: 14px;"></div>
+        <div class="login-hint">ใส่รหัส Pin Login <strong>เข้าสู่ระบบ</strong></div>
+      </div>
+    </div>
+
+    <!-- Admin Dashboard Container -->
+  <main class="admin-dashboard shell">
+    <div class="admin-header">
+      <div class="admin-title-area">
+        <h1>จัดการระบบสมาชิก</h1>
+        <span>WESTWOOD • SYSTEM STATUS: ONLINE</span>
+      </div>
+      <div class="admin-header-actions">
+        <button class="admin-btn admin-btn-primary" id="addMemberBtn">+ เพิ่มสมาชิกใหม่</button>
+        <button class="admin-btn" id="exportJsonBtn">💾 ส่งออก JSON</button>
+        <button class="admin-btn admin-btn-danger" id="resetDefaultsBtn">↺ รีเซ็ตค่าเริ่มต้น</button>
+        <button class="admin-btn" id="adminLogoutBtn">ล็อคเอาท์</button>
+      </div>
+    </div>
+
+    <div class="admin-grid">
+      <!-- Left Column: Member Roster Table -->
+      <section class="admin-panel">
+        <div class="admin-panel-head">
+          <h2>รายชื่อสมาชิก (Roster List)</h2>
+        </div>
+        <div class="members-table-wrap">
+          <table class="members-table">
+            <thead>
+              <tr>
+                <th>สมาชิก</th>
+                <th>ตำแหน่ง</th>
+                <th>Facebook</th>
+                <th>Discord</th>
+                <th>การจัดการ</th>
+              </tr>
+            </thead>
+            <tbody id="adminMembersTableBody">
+              <!-- Dynamically populated by admin.js -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Right Column: Gang Settings -->
+      <section class="admin-panel">
+        <div class="admin-panel-head">
+          <h2>ตั้งค่าระบบ & Discord Bridge</h2>
+        </div>
+        <form id="adminSettingsForm">
+          <div class="form-group">
+            <label class="form-label">คำขวัญแก๊ง (Tagline)</label>
+            <input type="text" class="form-control" id="settingMotto" placeholder="RESPECT ALL • FEAR NONE">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">คำสั่งเชื่อมต่อเซิร์ฟเวอร์ FiveM</label>
+            <input type="text" class="form-control" id="settingFivemServer" placeholder="connect fam2.net">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">เพลง Spotify เริ่มต้นประจำแก๊ง (Spotify URL)</label>
+            <input type="text" class="form-control" id="settingSpotifyUrl" placeholder="https://open.spotify.com/intl-th/track/7MXVkk9YMctZqd1Srtv4MB">
+            <small style="color: #888; font-size: 11px; margin-top: 5px; display: block;">ใส่ลิงก์เพลง หรือ Playlist จาก Spotify เช่น https://open.spotify.com/track/...</small>
+          </div>
+
+          <button type="submit" class="admin-btn admin-btn-primary" style="width: 100%; height: 44px; margin-top: 10px;">
+            บันทึกการตั้งค่า
+          </button>
+        </form>
+      </section>
+    </div>
+  </main>
+
+  <!-- Member Add/Edit Modal -->
+  <div class="modal-backdrop" id="memberEditModal">
+    <div class="modal-card" style="width: min(560px, 100%);">
+      <button class="modal-close-btn" id="closeEditModalBtn">✕</button>
+      <h2 id="modalTitle" style="font-family: 'Cinzel', serif; font-size: 22px; color: #fff; margin-bottom: 20px;">
+        เพิ่มสมาชิกใหม่
+      </h2>
+
+      <form id="memberEditForm">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+          <div class="form-group">
+            <label class="form-label">ชื่อสมาชิก (Name) *</label>
+            <input type="text" class="form-control" id="memberName" required placeholder="เช่น John Westwood">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">กลุ่มตำแหน่ง (Rank Group) *</label>
+            <select class="form-control" id="memberRole" required>
+              <option value="owner">OWNER</option>
+              <option value="core">LEADER</option>
+              <option value="bigsupport">BIGSUPPORT</option>
+              <option value="member">MEMBERS</option>
+            </select>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+          <div class="form-group">
+            <label class="form-label">ชื่อตำแหน่งย่อย (Rank Title)</label>
+            <input type="text" class="form-control" id="memberRankTitle" placeholder="เช่น FOUNDER / LEADER">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" style="display: flex; justify-content: space-between;">
+              <span>รูปประจำตัว (Avatar URL)</span>
+              <button type="button" id="fetchDiscordAvatarBtn" style="background: none; border: none; color: #5865f2; cursor: pointer; font-size: 11px; font-weight: 700;">
+                ⚡ ดึงรูปจาก Discord
+              </button>
+            </label>
+            <input type="text" class="form-control" id="memberAvatar" value="assets/logo-red.jpg">
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+          <div class="form-group">
+            <label class="form-label">Facebook (URL หรือ ชื่อ)</label>
+            <input type="text" class="form-control" id="memberFacebook" placeholder="https://facebook.com/username">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Discord Tag หรือ ID</label>
+            <input type="text" class="form-control" id="memberDiscord" placeholder="username#0000 หรือ ID">
+          </div>
+        </div>
+
+        <button type="submit" class="admin-btn admin-btn-primary" style="width: 100%; height: 46px; font-size: 14px; margin-top: 10px;">
+          บันทึกข้อมูล
+        </button>
+      </form>
+    </div>
+  </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="shell footer-inner">
+      <div class="footer-brand">
+        WESTWOOD © 2026 — Powerby : 34hz
+      </div>
+      <div style="display: flex; gap: 18px; align-items: center;">
+        <a href="javascript:void(0)" onclick="window.copyConnectCommand()" style="color: var(--accent); font-weight: 700;">
+          🎮 CONNECT SERVER
+        </a>
+        <span>•</span>
+        <a href="index.html">HOME</a>
+        <span>•</span>
+        <a href="members.html">MEMBERS</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/site.js"></script>
+  <script src="js/members.js"></script>
+  <script src="js/admin.js"></script>
+  <script src="js/discord-bridge.js"></script>
+  <script src="js/player.js"></script>
+  <script src="js/spa-router.js"></script>
+</body>
+</html>

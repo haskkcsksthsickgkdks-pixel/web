@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="th" data-theme="crimson">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="WESTWOOD — Members">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="WESTWOOD">
+  <meta property="og:title" content="WESTWOOD — Members">
+  <meta property="og:description" content="WESTWOOD Members">
+  <meta property="og:image" content="assets/logo-red.jpg">
+  <title>WESTWOOD — Members</title>
+  
+  <link rel="icon" type="image/jpeg" href="assets/logo-red.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;900&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/entry-sequence.css">
+  <link rel="stylesheet" href="css/admin.css">
+  <link rel="stylesheet" href="css/player.css">
+  <link rel="stylesheet" href="css/discord-bridge.css">
+</head>
+<body class="members-page">
+  <canvas id="particleCanvas"></canvas>
+  <div class="site-backdrop" aria-hidden="true"></div>
+
+  <!-- Topbar Header -->
+  <header class="topbar shell">
+    <a class="brand" href="index.html" aria-label="Westwood Home">
+      <span class="brand-box">
+        <img src="assets/logo-red.jpg" alt="Westwood Logo">
+      </span>
+      <span class="brand-word">WESTWOOD</span>
+    </a>
+
+    <div class="topbar-actions">
+      <nav class="nav" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a class="active" href="members.html">Members</a>
+        <a href="admin.html">Admin</a>
+      </nav>
+
+      <!-- Theme Switcher Button -->
+      <button class="theme-switch-btn" type="button" title="สลับธีม Crimson / Gold">
+        <span class="theme-indicator-dot"></span>
+        <span class="theme-label-text">CRIMSON METAL</span>
+      </button>
+
+      <!-- FiveM Online Status Pill -->
+      <div class="server-pill" onclick="window.copyConnectCommand()" title="คลิกเพื่อคัดลอกคำสั่งเชื่อมต่อ FiveM">
+        <span class="server-dot"></span>
+        <span>CITY ONLINE</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Page Content Container for Seamless SPA Navigation -->
+  <div id="pageContent">
+    <!-- Members Main Content -->
+    <main class="members-main shell">
+    <section class="members-intro members-intro-minimal">
+      <div class="members-intro-copy">
+        <div class="minimal-kicker">WESTWOOD</div>
+        <h1>Members</h1>
+      </div>
+
+      <!-- Summary Tiles (Matching Tataros 168) -->
+      <div class="member-summary-grid">
+        <div class="summary-tile total rank-owner">
+          <span>ทั้งหมด</span>
+          <strong id="memberCount">10</strong>
+        </div>
+        <div class="summary-tile rank-owner">
+          <span>OWNER</span>
+          <strong id="ownerCount">01</strong>
+        </div>
+        <div class="summary-tile rank-core">
+          <span>LEADER</span>
+          <strong id="coreCount">02</strong>
+        </div>
+        <div class="summary-tile rank-support">
+          <span>BIGSUPPORT</span>
+          <strong id="supportCount">02</strong>
+        </div>
+        <div class="summary-tile rank-member">
+          <span>MEMBERS</span>
+          <strong id="memberOnlyCount">05</strong>
+        </div>
+      </div>
+    </section>
+
+    <!-- Search & Filter Tools -->
+    <section class="members-tools members-tools-minimal">
+      <label class="search-wrap">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.8-3.8"></path></svg>
+        <input id="memberSearch" type="text" placeholder="ค้นหาชื่อ หรือตำแหน่ง..." autocomplete="off">
+      </label>
+
+      <div class="filters" role="group" aria-label="Member rank filter">
+        <button class="filter active" data-filter="all">ทั้งหมด</button>
+        <button class="filter" data-filter="owner">OWNER</button>
+        <button class="filter" data-filter="core">LEADER</button>
+        <button class="filter" data-filter="bigsupport">BIGSUPPORT</button>
+        <button class="filter" data-filter="member">MEMBERS</button>
+      </div>
+    </section>
+
+    <!-- OWNER / FOUNDER BLOCK -->
+    <section class="rank-block rank-owner" id="ownerBlock">
+      <div class="rank-heading">
+        <div>
+          <span class="rank-dot"></span>
+          <div class="rank-title">OWNER</div>
+        </div>
+      </div>
+      <div id="ownerList"></div>
+    </section>
+
+    <!-- CORE / UNDERBOSS BLOCK -->
+    <section class="rank-block rank-core" id="coreBlock">
+      <div class="rank-heading">
+        <div>
+          <span class="rank-dot"></span>
+          <div class="rank-title">LEADER</div>
+        </div>
+      </div>
+      <div id="coreList" class="members-grid"></div>
+    </section>
+
+    <!-- SUPPORT / BIG SUPPORT BLOCK -->
+    <section class="rank-block rank-support" id="supportBlock">
+      <div class="rank-heading">
+        <div>
+          <span class="rank-dot"></span>
+          <div class="rank-title">BIGSUPPORT</div>
+        </div>
+      </div>
+      <div id="supportList" class="members-grid"></div>
+    </section>
+
+    <!-- MEMBERS BLOCK -->
+    <section class="rank-block rank-member" id="memberBlock">
+      <div class="rank-heading">
+        <div>
+          <span class="rank-dot"></span>
+          <div class="rank-title">MEMBERS</div>
+        </div>
+      </div>
+      <div id="memberList" class="members-grid"></div>
+    </section>
+  </main>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="shell footer-inner">
+      <div class="footer-brand">
+        WESTWOOD © 2026 — Powerby : 34hz
+      </div>
+      <div style="display: flex; gap: 18px; align-items: center;">
+        <a href="javascript:void(0)" onclick="window.copyConnectCommand()" style="color: var(--accent); font-weight: 700;">
+          🎮 CONNECT SERVER
+        </a>
+        <span>•</span>
+        <a href="index.html">HOME</a>
+        <span>•</span>
+        <a href="admin.html">ADMIN</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/site.js"></script>
+  <script src="js/members.js"></script>
+  <script src="js/admin.js"></script>
+  <script src="js/discord-bridge.js"></script>
+  <script src="js/player.js"></script>
+  <script src="js/spa-router.js"></script>
+</body>
+</html>

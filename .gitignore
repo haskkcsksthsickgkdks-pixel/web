@@ -1,0 +1,12 @@
+# Dependencies
+node_modules/
+
+# Environment Variables & Secrets (Keep your Discord Token safe!)
+.env
+.env.local
+
+# Logs & System Files
+*.log
+npm-debug.log*
+.DS_Store
+Thumbs.db

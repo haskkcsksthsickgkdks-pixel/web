@@ -1,0 +1,625 @@
+/**
+ * WESTWOOD SYNDICATE — Discord Bridge & Holographic HUD Styles
+ * Cutting-Edge Cyberpunk Aesthetic, 3D Gyro Hologram Card, Live Comm Toast
+ */
+
+/* 1. Discord Comm-Link Topbar Pill */
+.discord-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(88, 101, 242, 0.12);
+  border: 1px solid rgba(88, 101, 242, 0.35);
+  color: #c9cdfb;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 0 14px rgba(88, 101, 242, 0.15);
+}
+
+.discord-pill:hover {
+  background: rgba(88, 101, 242, 0.25);
+  border-color: #5865f2;
+  color: #fff;
+  box-shadow: 0 0 20px rgba(88, 101, 242, 0.4);
+  transform: translateY(-1px);
+}
+
+.discord-pill .pulse-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #5865f2;
+  box-shadow: 0 0 8px #5865f2;
+  animation: discordPulse 2s infinite;
+}
+
+.discord-pill.online .pulse-dot {
+  background: #23a55a;
+  box-shadow: 0 0 8px #23a55a;
+}
+
+@keyframes discordPulse {
+  0% { transform: scale(0.95); opacity: 0.7; }
+  50% { transform: scale(1.2); opacity: 1; }
+  100% { transform: scale(0.95); opacity: 0.7; }
+}
+
+/* 2. Holographic Satellite Comm-Link Toast */
+.discord-comm-toast {
+  position: fixed;
+  top: 76px;
+  right: 24px;
+  z-index: 999999;
+  background: rgba(14, 14, 18, 0.94);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--accent, #e50914);
+  border-left: 4px solid var(--accent, #e50914);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.65), 0 0 25px var(--accent-glow, rgba(229, 9, 20, 0.25));
+  border-radius: 10px;
+  padding: 16px 20px;
+  max-width: 420px;
+  width: calc(100vw - 48px);
+  transform: translateX(120%);
+  opacity: 0;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
+  pointer-events: none;
+  font-family: 'Inter', sans-serif;
+  overflow: hidden;
+}
+
+.discord-comm-toast.is-active {
+  transform: translateX(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.discord-comm-toast::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), transparent 60%);
+  pointer-events: none;
+}
+
+.toast-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: var(--accent, #e50914);
+  text-transform: uppercase;
+}
+
+.toast-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(229, 9, 20, 0.15);
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+
+.toast-body {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+}
+
+.toast-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  flex-shrink: 0;
+  background: #000;
+}
+
+.toast-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.toast-details h4 {
+  font-size: 14px;
+  color: #fff;
+  margin-bottom: 3px;
+  font-weight: 700;
+}
+
+.toast-details p {
+  font-size: 12px;
+  color: #aaa;
+  line-height: 1.4;
+}
+
+.toast-footer {
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  color: #777;
+  font-family: monospace;
+}
+
+/* 3. Discord Nexus Modal & Simulator */
+.nexus-modal-card {
+  width: min(840px, 94vw);
+  max-height: 88vh;
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  background: #111216;
+  border: 1px solid rgba(88, 101, 242, 0.4);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8), 0 0 40px rgba(88, 101, 242, 0.2);
+  border-radius: 16px;
+  position: relative;
+  overflow: hidden;
+}
+
+.nexus-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.nexus-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.nexus-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: #5865f2;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  font-size: 18px;
+  box-shadow: 0 0 15px rgba(88, 101, 242, 0.5);
+}
+
+.nexus-title-wrap h2 {
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  color: #fff;
+}
+
+.nexus-title-wrap span {
+  font-size: 11px;
+  color: #8e9297;
+  display: block;
+}
+
+.nexus-tabs {
+  display: flex;
+  gap: 8px;
+  margin: 16px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding-bottom: 8px;
+}
+
+.nexus-tab-btn {
+  background: transparent;
+  border: none;
+  color: #8e9297;
+  padding: 8px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.nexus-tab-btn:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.nexus-tab-btn.active {
+  color: #fff;
+  background: #5865f2;
+  box-shadow: 0 0 12px rgba(88, 101, 242, 0.4);
+}
+
+.nexus-body {
+  overflow-y: auto;
+  padding-right: 6px;
+  flex: 1;
+}
+
+/* Discord Live Embed Mockup Preview */
+.discord-mock-message {
+  background: #313338;
+  border-radius: 8px;
+  padding: 14px 16px;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  color: #dbdee1;
+  margin-top: 14px;
+}
+
+.mock-user-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.mock-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #5865f2;
+  display: grid;
+  place-items: center;
+  font-weight: bold;
+  color: #fff;
+  overflow: hidden;
+}
+
+.mock-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.mock-username {
+  font-weight: 700;
+  color: #fff;
+  font-size: 14px;
+}
+
+.mock-bot-tag {
+  background: #5865f2;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 5px;
+  border-radius: 4px;
+  margin-left: 6px;
+}
+
+.mock-timestamp {
+  font-size: 11px;
+  color: #949ba4;
+  margin-left: 6px;
+}
+
+.discord-embed-card {
+  background: #2b2d31;
+  border-radius: 4px;
+  border-left: 4px solid #e50914;
+  padding: 12px 16px;
+  margin-top: 6px;
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.embed-content {
+  flex: 1;
+}
+
+.embed-title {
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.embed-desc {
+  font-size: 12px;
+  color: #dbdee1;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+
+.embed-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.embed-field span {
+  display: block;
+  font-size: 11px;
+  color: #949ba4;
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.embed-field strong {
+  font-size: 12px;
+  color: #fff;
+}
+
+.embed-thumb {
+  width: 70px;
+  height: 70px;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: #1e1f22;
+  flex-shrink: 0;
+}
+
+.embed-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* 4. 3D Tilt Holographic Gang Syndicate ID Card */
+.holo-stage {
+  perspective: 1000px;
+  display: grid;
+  place-items: center;
+  padding: 24px 0;
+}
+
+.holo-card {
+  width: min(440px, 100%);
+  height: 260px;
+  border-radius: 16px;
+  position: relative;
+  background: linear-gradient(135deg, #18191f 0%, #0d0e12 100%);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 30px rgba(229, 9, 20, 0.25);
+  transform-style: preserve-3d;
+  transition: transform 0.15s ease-out, box-shadow 0.2s ease;
+  cursor: grab;
+  overflow: hidden;
+  user-select: none;
+}
+
+.holo-card:active {
+  cursor: grabbing;
+}
+
+/* Dynamic Sheen Overlay */
+.holo-sheen {
+  position: absolute;
+  inset: -100%;
+  background: linear-gradient(
+    115deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.05) 35%,
+    rgba(255, 255, 255, 0.35) 48%,
+    rgba(0, 210, 211, 0.3) 52%,
+    rgba(229, 9, 20, 0.35) 58%,
+    rgba(212, 175, 55, 0.3) 64%,
+    transparent 100%
+  );
+  pointer-events: none;
+  transform: translate(-30%, -30%);
+  transition: transform 0.1s ease-out;
+  mix-blend-mode: color-dodge;
+  opacity: 0.8;
+}
+
+.holo-inner {
+  padding: 20px 24px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  z-index: 2;
+}
+
+.holo-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.holo-brand {
+  font-family: 'Cinzel', serif;
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.holo-chip {
+  width: 38px;
+  height: 28px;
+  background: linear-gradient(135deg, #d4af37, #aa820a);
+  border-radius: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  position: relative;
+  box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.5);
+}
+
+.holo-chip::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.holo-middle {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+}
+
+.holo-avatar-frame {
+  width: 74px;
+  height: 74px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 2px solid var(--accent, #e50914);
+  box-shadow: 0 0 16px var(--accent-glow, rgba(229, 9, 20, 0.4));
+  background: #000;
+  flex-shrink: 0;
+}
+
+.holo-avatar-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.holo-info h3 {
+  font-size: 18px;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: 0.04em;
+  margin-bottom: 4px;
+}
+
+.holo-role-badge {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  padding: 3px 10px;
+  border-radius: 4px;
+  background: var(--accent, #e50914);
+  color: #fff;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.holo-cid {
+  font-family: monospace;
+  font-size: 11px;
+  color: #aaa;
+}
+
+.holo-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 12px;
+  gap: 10px;
+}
+
+.holo-facebook-tag {
+  font-size: 11px;
+  color: #70b5ff;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  background: rgba(24, 119, 242, 0.15);
+  border: 1px solid rgba(24, 119, 242, 0.35);
+  padding: 5px 12px;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.holo-facebook-tag:hover {
+  background: #1877f2;
+  color: #fff;
+  border-color: #1877f2;
+}
+
+.holo-discord-tag {
+  font-size: 11px;
+  color: #c9cdfb;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  background: rgba(88, 101, 242, 0.15);
+  border: 1px solid rgba(88, 101, 242, 0.35);
+  padding: 5px 12px;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.holo-discord-tag:hover {
+  background: #5865f2;
+  color: #fff;
+}
+
+/* Modal Bottom Action Buttons */
+.holo-modal-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 16px;
+  width: min(440px, 100%);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.holo-action-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 46px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  border: 1px solid transparent;
+  text-decoration: none;
+  font-family: 'Inter', sans-serif;
+}
+
+.holo-action-btn.fb {
+  background: rgba(24, 119, 242, 0.15);
+  border-color: rgba(24, 119, 242, 0.4);
+  color: #fff;
+}
+
+.holo-action-btn.fb:hover {
+  background: #1877f2;
+  box-shadow: 0 0 20px rgba(24, 119, 242, 0.4);
+  transform: translateY(-2px);
+}
+
+.holo-action-btn.dc {
+  background: rgba(88, 101, 242, 0.15);
+  border-color: rgba(88, 101, 242, 0.4);
+  color: #fff;
+}
+
+.holo-action-btn.dc:hover {
+  background: #5865f2;
+  box-shadow: 0 0 20px rgba(88, 101, 242, 0.4);
+  transform: translateY(-2px);
+}
+
+/* High Command Badge Glow on Card Update */
+@keyframes memberUpdatedFlash {
+  0% { box-shadow: 0 0 0 0 rgba(0, 210, 211, 0.8); }
+  50% { box-shadow: 0 0 35px 8px rgba(0, 210, 211, 0.6); }
+  100% { box-shadow: none; }
+}
+
+.member-just-updated {
+  animation: memberUpdatedFlash 2.5s ease-out;
+}

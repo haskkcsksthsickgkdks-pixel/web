@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="th" data-theme="crimson">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="WESTWOOD — Private Community">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="WESTWOOD">
+  <meta property="og:title" content="WESTWOOD — Home">
+  <meta property="og:description" content="WESTWOOD — Private Community">
+  <meta property="og:image" content="assets/logo-red.jpg">
+  <title>WESTWOOD — Home</title>
+  
+  <link rel="icon" type="image/jpeg" href="assets/logo-red.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;900&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/entry-sequence.css">
+  <link rel="stylesheet" href="css/admin.css">
+  <link rel="stylesheet" href="css/player.css">
+  <link rel="stylesheet" href="css/discord-bridge.css">
+</head>
+<body class="home-page">
+  <!-- Dynamic Particle Canvas -->
+  <canvas id="particleCanvas"></canvas>
+  <div class="site-backdrop" aria-hidden="true"></div>
+
+  <!-- Topbar Header -->
+  <header class="topbar shell">
+    <a class="brand" href="index.html" aria-label="Westwood Home">
+      <span class="brand-box">
+        <img src="assets/logo-red.jpg" alt="Westwood Logo">
+      </span>
+      <span class="brand-word">WESTWOOD</span>
+    </a>
+
+    <div class="topbar-actions">
+      <nav class="nav" aria-label="Main navigation">
+        <a class="active" href="index.html">Home</a>
+        <a href="members.html">Members</a>
+        <a href="admin.html">Admin</a>
+      </nav>
+
+      <!-- Theme Switcher Button -->
+      <button class="theme-switch-btn" type="button" title="สลับธีม Crimson / Gold">
+        <span class="theme-indicator-dot"></span>
+        <span class="theme-label-text">CRIMSON METAL</span>
+      </button>
+
+      <!-- FiveM Online Status Pill -->
+      <div class="server-pill" onclick="window.copyConnectCommand()" title="คลิกเพื่อคัดลอกคำสั่งเชื่อมต่อ FiveM">
+        <span class="server-dot"></span>
+        <span>CITY ONLINE</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Page Content Container for Seamless SPA Navigation -->
+  <div id="pageContent">
+    <!-- Main Hero Section (Matching Tataros 168 Minimal Luxury) -->
+    <main class="minimal-home shell">
+      <section class="minimal-home-copy">
+        <div class="minimal-kicker">PRIVATE COMMUNITY</div>
+        <h1>WESTWOOD</h1>
+        <p class="minimal-home-lead"></p>
+
+        <div class="minimal-home-actions">
+          <a class="primary-button" href="members.html">
+            ดูรายชื่อสมาชิก <span>→</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- Right Side 3D Rotating Crest Panel -->
+      <aside class="minimal-home-panel">
+        <div class="panel-kicker">WESTWOOD</div>
+
+        <div class="home-logo-stage">
+          <div class="home-logo-rotator">
+            <div class="crest-glow-ring"></div>
+            <div class="crest-orbit-lines"></div>
+            <div class="showcase-logo-box">
+              <img src="assets/logo-red.jpg" alt="Westwood Crest">
+            </div>
+          </div>
+        </div>
+
+        <div class="minimal-panel-copy">
+          <span>168</span>
+          <strong>WESTWOOD<br>RESPECT ALL<br>FEAR NONE</strong>
+        </div>
+      </aside>
+    </main>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="shell footer-inner">
+      <div class="footer-brand">
+        WESTWOOD © 2026 — Powerby : 34hz
+      </div>
+      <div style="display: flex; gap: 18px; align-items: center;">
+        <a href="javascript:void(0)" onclick="window.copyConnectCommand()" style="color: var(--accent); font-weight: 700;">
+          🎮 CONNECT SERVER
+        </a>
+        <span>•</span>
+        <a href="members.html">MEMBERS</a>
+        <span>•</span>
+        <a href="admin.html">ADMIN</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/site.js"></script>
+  <script src="js/members.js"></script>
+  <script src="js/admin.js"></script>
+  <script src="js/discord-bridge.js"></script>
+  <script src="js/player.js"></script>
+  <script src="js/spa-router.js"></script>
+</body>
+</html>

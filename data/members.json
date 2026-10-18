@@ -1,0 +1,92 @@
+[
+  {
+    "id": "ww-001",
+    "name": "Kaiser Westwood",
+    "role": "owner",
+    "rankTitle": "FOUNDER",
+    "avatar": "assets/logo-gold.jpg",
+    "facebook": "https://facebook.com/kaiser.westwood",
+    "discord": "kaiser.westwood"
+  },
+  {
+    "id": "ww-002",
+    "name": "Alexander 'Viper' Cross",
+    "role": "core",
+    "rankTitle": "LEADER",
+    "avatar": "assets/logo-red.jpg",
+    "facebook": "https://facebook.com/viper.cross.ww",
+    "discord": "viper.cross#168"
+  },
+  {
+    "id": "ww-003",
+    "name": "Dominic 'Ghost' Vance",
+    "role": "core",
+    "rankTitle": "LEADER",
+    "avatar": "assets/logo-gold.jpg",
+    "facebook": "https://facebook.com/ghost.vance.ww",
+    "discord": "ghost.vance#777"
+  },
+  {
+    "id": "ww-004",
+    "name": "Marcus 'Phoenix' Blade",
+    "role": "bigsupport",
+    "rankTitle": "BIGSUPPORT",
+    "avatar": "assets/logo-red.jpg",
+    "facebook": "https://facebook.com/phoenix.blade.ww",
+    "discord": "phoenix.blade#111"
+  },
+  {
+    "id": "ww-005",
+    "name": "Damian 'Raven' Cole",
+    "role": "bigsupport",
+    "rankTitle": "BIGSUPPORT",
+    "avatar": "assets/logo-gold.jpg",
+    "facebook": "https://facebook.com/raven.cole.ww",
+    "discord": "raven.cole#999"
+  },
+  {
+    "id": "ww-006",
+    "name": "Zack 'Zero' Walker",
+    "role": "member",
+    "rankTitle": "MEMBER",
+    "avatar": "assets/logo-red.jpg",
+    "facebook": "https://facebook.com/zero.walker.ww",
+    "discord": "zero.ww#404"
+  },
+  {
+    "id": "ww-007",
+    "name": "Leo 'Spectre' Sterling",
+    "role": "member",
+    "rankTitle": "MEMBER",
+    "avatar": "assets/logo-gold.jpg",
+    "facebook": "https://facebook.com/spectre.sterling.ww",
+    "discord": "spectre.ww#007"
+  },
+  {
+    "id": "ww-008",
+    "name": "Jax 'Titan' Brooks",
+    "role": "member",
+    "rankTitle": "MEMBER",
+    "avatar": "assets/logo-red.jpg",
+    "facebook": "https://facebook.com/titan.brooks.ww",
+    "discord": "titan.brooks#888"
+  },
+  {
+    "id": "ww-009",
+    "name": "Rex 'Kobra' Vance",
+    "role": "member",
+    "rankTitle": "MEMBER",
+    "avatar": "assets/logo-gold.jpg",
+    "facebook": "https://facebook.com/kobra.rex.ww",
+    "discord": "kobra.rex#555"
+  },
+  {
+    "id": "ww-010",
+    "name": "Caleb 'Shadow' Thorne",
+    "role": "member",
+    "rankTitle": "MEMBER",
+    "avatar": "assets/logo-red.jpg",
+    "facebook": "https://facebook.com/shadow.thorne.ww",
+    "discord": "shadow.thorne#321"
+  }
+]
