@@ -88,20 +88,36 @@ const rest = new REST({ version: "10" }).setToken(token);
   try {
     console.log(`[Westwood Bot] กำลังลงทะเบียนคำสั่ง Slash Commands (${commands.length} คำสั่ง)...`);
 
+    let deployed = false;
     let data;
+
     if (guildId) {
-      data = await rest.put(
-        Routes.applicationGuildCommands(clientId, guildId),
-        { body: commands }
-      );
-      console.log(`✅ สำเร็จ! ลงทะเบียน ${data.length} คำสั่งใน Server Guild ID: ${guildId}`);
-    } else {
+      try {
+        data = await rest.put(
+          Routes.applicationGuildCommands(clientId, guildId),
+          { body: commands }
+        );
+        console.log(`✅ สำเร็จ! ลงทะเบียน ${data.length} คำสั่งใน Server Guild ID: ${guildId}`);
+        deployed = true;
+      } catch (guildErr) {
+        if (guildErr.code === 50001) {
+          console.warn(`⚠️ บอทยังไม่ได้อยู่ใน Server Guild ID: ${guildId} หรือยังไม่ได้สิทธิ์ กำลังสลับไปลงทะเบียนแบบ Global ให้แทน...`);
+        } else {
+          throw guildErr;
+        }
+      }
+    }
+
+    if (!deployed) {
       data = await rest.put(
         Routes.applicationCommands(clientId),
         { body: commands }
       );
-      console.log(`✅ สำเร็จ! ลงทะเบียน ${data.length} คำสั่งแบบ Global เรียบร้อย!`);
+      console.log(`✅ สำเร็จ! ลงทะเบียน ${data.length} คำสั่งแบบ Global (ใช้ได้ทุกเซิร์ฟเวอร์ที่บอทอยู่) เรียบร้อย!`);
     }
+
+    console.log(`\n🔗 ลิงก์สำหรับเชิญบอทเข้าเซิร์ฟเวอร์ Discord (ถ้ายังไม่ได้เชิญ):`);
+    console.log(`https://discord.com/api/oauth2/authorize?client_id=${clientId}&permissions=8&scope=bot%20applications.commands\n`);
   } catch (error) {
     console.error("❌ เกิดข้อผิดพลาดในการ Deploy คำสั่ง:", error);
   }

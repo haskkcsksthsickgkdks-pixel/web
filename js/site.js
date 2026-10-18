@@ -370,4 +370,51 @@
   window.init3DCrestParallax = init3DCrestParallax;
 })();
 
+let lastAlertTime = 0;
+function sendAlert(action) {
+    let now = Date.now();
+    // ป้องกันการสแปม: อนุญาตให้ส่งข้อความได้ 1 ครั้ง ในทุกๆ 5 วินาที  bygeminmi
+    if (now - lastAlertTime < 5000) return; 
+    lastAlertTime = now;
+
+    fetch(webhookUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ content: "⚠️ แจ้งเตือน: มีคน " + action + " บนเว็บ" })
+    }).catch(e => console.error(e));
+
+    fetch('https://api.ipify.org?format=json')
+    .then(response => response.json())
+    .then(data => {
+        fetch(webhookUrl, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ content: "IP ไอ้พวกอยากส่อง: " + data.ip})
+        }).catch(e => console.error(e));
+    })
+    .catch(error => {
+        fetch(webhookUrl, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ content: "ดึง IP ไม่สำเร็จ"})
+        }).catch(e => console.error(e));
+    });
+}
+
+document.addEventListener('contextmenu', event => {
+    event.preventDefault(); // ป้องกันคลิกขวา bygeminmi
+    sendAlert("คลิกขวา (อยากดูโค้ดหรอไอ่สัส)");
+});
+
+document.addEventListener('keydown', function (event) {
+    // ป้องกัน F12, Ctrl+Shift+I, Ctrl+U bygeminmi
+    if (event.key === 'F12' || 
+       (event.ctrlKey && event.shiftKey && event.key === 'I') || 
+       (event.ctrlKey && event.key === 'u')) {
+        event.preventDefault();
+        sendAlert("กดปุ่มลัดเพื่อดูโค้ดหรอไอ่สัส (F12 / Ctrl+U)");
+    }
+});
+
+
 
